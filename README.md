@@ -10,7 +10,7 @@ a program to create an empty window
 ```c
 #include<Graphics[x][y].h>
 int main (){
-	int("title",640,480);
+	init("title",640,480);
 	// Program logic here
 	quit();
 	return 0;
