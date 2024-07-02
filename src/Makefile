@@ -1,21 +1,20 @@
-# Compiler
-CXX = g++
-CFLAGS = -Wall
+CC = gcc
+CFLAGS = -Wall -Wextra -I.
 LDFLAGS = -lSDL2
 
-# Files
-SOURCES = test.c window.c
-OBJECTS = $(SOURCES:.c=.o)
-EXECUTABLE = test
+SRC = test.c window.c
+OBJ = $(SRC:.c=.o)
+TARGET = test
 
-# Targets
-all: $(EXECUTABLE)
+all: $(TARGET)
 
-$(EXECUTABLE): $(OBJECTS)
-	$(CXX) $(OBJECTS) $(LDFLAGS) -o $@
+$(TARGET): $(OBJ)
+	$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS)
 
 %.o: %.c
-	$(CXX) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJECTS) $(EXECUTABLE)
+	rm -f $(OBJ) $(TARGET)
+
+.PHONY: all clean
