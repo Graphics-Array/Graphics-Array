@@ -4,6 +4,8 @@
 // Global variables for window and renderer
 SDL_Window* window = NULL;
 SDL_Renderer* renderer = NULL;
+SDL_Surface * Surface = NULL;
+SDL_Surface * load_image = NULL;
 bool active = true;
 
 // Function prototypes
@@ -105,3 +107,11 @@ int file_format_parser_extension(const char* filename) {
     }
 }
 }
+
+void load_bmp(const char *fileNameAndPath){
+	SDL_Surface * load_image = SDL_LoadBMP(fileNameAndPath);	
+	SDL_Texture * texture = SDL_CreateTextureFromSurface(renderer, image);
+	SDL_Rect dstrect = { xpos, ypos, imgWidth, imgHeight}; 
+	SDL_RenderCopy(renderer, texture, NULL, &dstrect);
+	SDL_RenderPresent(renderer);
+	}
